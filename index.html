@@ -39,26 +39,19 @@
   <div id="result"></div>
 
   <script>
-    function pay(type) {
-      fetch("https://250c-2402-800-6341-a570-18c4-7842-5058-98bc.ngrok-free.app/api/payment", {
-
+    async function pay(type) {
+      const response = await fetch("https://250c-2402-800-6341-a570-18c4-7842-5058-98bc.ngrok-free.app/api/payment", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ type: type })
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.payUrl) {
-          window.location.href = data.payUrl;
-        } else {
-          document.getElementById("result").innerText = "❌ Thanh toán thất bại!";
-        }
-      })
-      .catch(err => {
-        document.getElementById("result").innerText = "❌ Lỗi kết nối: " + err.message;
       });
+
+      const data = await response.json();
+      if (data && data.payUrl) {
+        window.location.href = data.payUrl;
+      } else {
+        document.getElementById("result").innerText = "❌ Thanh toán thất bại!";
+      }
     }
   </script>
 
