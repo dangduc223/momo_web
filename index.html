@@ -39,7 +39,8 @@
 
   <script>
     async function pay(type) {
-      const response = await fetch("https://7679-2402-800-6341-a570-18c4-7842-5058-98bc.ngrok-free.app/create_payment", {
+      const response = await fetch("https://b2d3-2402-800-6341-a570-18c4-7842-5058-98bc.ngrok-free.app/api/payment", {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ type: type })
